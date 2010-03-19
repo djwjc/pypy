@@ -1,0 +1,3 @@
+/_cache
+/lib/ctypes_config_cache/_*_cache.py
+/translator/goal/*.errors

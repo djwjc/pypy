@@ -55,12 +55,12 @@ class DistutilsPlatform(Platform):
         if not self.name in ('win32', 'darwin'): # xxx
             if 'm' not in self.libraries:
                 self.libraries.append('m')
-            self.compile_extra += CFLAGS + ['-fomit-frame-pointer']
+            self.compile_extra += CFLAGS + ['-fomit-frame-pointer'] + ['-I/usr/local/include']
             if 'pthread' not in self.libraries:
                 self.libraries.append('pthread')
             if self.name != 'sunos5': 
                 self.compile_extra += ['-pthread']
-                self.link_extra += ['-pthread']
+                self.link_extra += ['-pthread'] + ['-L/usr/local/lib']
             else:
                 self.compile_extra += ['-pthreads']
                 self.link_extra += ['-lpthread']
@@ -158,8 +158,8 @@ class DistutilsPlatform(Platform):
             library_dirs=self.eci.library_dirs)
 
     def include_dirs_for_libffi(self):
-        return ['/usr/include/libffi']
+        return ['/usr/local/include/libffi']
 
     def library_dirs_for_libffi(self):
-        return ['/usr/lib/libffi']
+        return ['/usr/local/lib']
 

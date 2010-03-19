@@ -378,6 +378,9 @@ class CCompiler:
                 self.libraries.append('pthread')
             self.compile_extra += ['-O3', '-fomit-frame-pointer', '-pthread']
             self.link_extra += ['-pthread']
+        if sys.platform.startswith('freebsd'):
+            self.compile_extra += ['-I/usr/local/include']
+            self.link_extra += ['-I/usr/local/lib']
         if sys.platform == 'win32':
             self.link_extra += ['/DEBUG'] # generate .pdb file
         if sys.platform == 'darwin':

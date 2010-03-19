@@ -22,7 +22,7 @@ _MSVC = platform.name == "msvc"
 _MINGW = platform.name == "mingw32"
 _WIN32 = _MSVC or _MINGW
 _MAC_OS = platform.name == "darwin"
-_FREEBSD_7 = platform.name == "freebsd7"
+_FREEBSD = platform.name.startswith("freebsd")
 
 if _WIN32:
     from pypy.rlib import rwin32
@@ -59,10 +59,10 @@ if not _MSVC:
 
     if _MAC_OS:
         pre_include_bits = ['#define MACOSX']
-    else: 
+    else:
         pre_include_bits = []
 
-    if _FREEBSD_7 or _MINGW:
+    if _FREEBSD or _MINGW:
         libraries = []
     else:
         libraries = ['dl']

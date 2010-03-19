@@ -36,7 +36,7 @@ class CConfig:
     HAVE_FTIME = platform.Has(FTIME)
 
 
-if sys.platform == 'freebsd7':
+if sys.platform.startswith('freebsd'):
     libraries = ['compat']
 else:
     libraries = []
